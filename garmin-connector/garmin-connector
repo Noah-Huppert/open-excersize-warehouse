@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+set -x
+python ./gcexport-db.py --username "$GARMIN_USERNAME" --password "$GARMIN_PASSWORD" --url "$DATABASE_URL" --count "$GARMIN_COUNT"

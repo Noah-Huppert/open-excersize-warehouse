@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: "mdillon/postgis"
+    environment:
+      POSTGRES_USER: "dev-oew-postgres"
+      POSTGRES_PASSWORD: "dev-oew-postgres"
+      POSTGRES_DBNAME: "dev_oew"
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: "dpage/pgadmin4"
+    environment:
+      PGADMIN_LISTEN_PORT: "63000"
+      PGADMIN_DEFAULT_EMAIL: "pgadmin@localhost.com"
+      PGADMIN_DEFAULT_PASSWORD: "dev-oew-pgadmin"
+    ports:
+      - "63000:63000"
+  garmin_connector:
+    build: "./garmin-connector"
+    environment:
+      DATABASE_URL: "postgresql://dev-oew-postgres:dev-oew-postgres@postgres/dev_oew"
+      GARMIN_COUNT: "1"
+      #GARMIN_USERNAME: ""
+      # GARMIN_PASSWORD: ""
